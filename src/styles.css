@@ -18,3 +18,9 @@ button {
 .background {
   position: relative;
 }
+.hidden {
+  display: none;
+}
+.scores {
+  position: absolute;
+}

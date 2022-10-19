@@ -12,15 +12,33 @@
       <div class="logo">
         <img src="/img/dino_game_logo.png" alt="Dino Game" />
       </div>
+      <!-- <div class="high-score-div">
+        <p>Highscore: <span class="highScore"> 0 </span></p>
+      </div> -->
       <button id="start-button">
         <img src="/img/button_start.png" alt="start button" />
       </button>
     </div>
 
-    <div id="game-screen">
+    <div id="game-screen" class="hidden">
+      <div class="scores">
+        <div class="high-score-div">
+          <p>Highscore: <span class="highScore"> 0 </span></p>
+        </div>
+        <div id="score-div">
+          <p>Score: <span class="score"> 0 </span></p>
+        </div>
+      </div>
       <canvas id="game" width="1920" height="600"></canvas>
     </div>
-
+    <div class="restart-screen hidden">
+      <div class="logo">
+        <img src="/img/dino_game_logo.png" alt="Dino Game" />
+      </div>
+      <button id="restart-button">
+        <img src="/img/button_start.png" alt="start button" />
+      </button>
+    </div>
     <script type="text/javascript" src="js/index.js"></script>
   </body>
 </html>
