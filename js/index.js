@@ -1,68 +1,69 @@
 //Canvas
+
 const canvas = document.querySelector(`canvas`);
-canvas.style.border = `2px solid black`;
 const ctx = canvas.getContext(`2d`);
 const startScreen = document.querySelector(".start-screen");
 const gameScreen = document.querySelector("#game-screen");
 const restartScreen = document.querySelector(".restart-screen");
+
 // Score
+
 let score = document.querySelector(".score");
 let scoreValue = 0;
 let highscore = document.querySelector(".highScore");
-/* function countRestartButton() {
-  let count = 0;
-  count += 1;
-  if (count > 0) {
-    player.vY = 0;
-  }
-} */
 
 // Variables
+
 //Dino image animation
+
 let frameDino = 0;
 setInterval(function () {
   frameDino += 1;
 }, 120);
+
 // key pressed
+
 let registerKeyPress;
 let amountOfPressedAllowed = 5;
+
 // Game definitions
+
+let audio = new Audio("./src/game_music.mp3");
+let audio_gameover = new Audio("./src/game_over.mp3");
 const floor_01 = new Image();
-floor_01.src = "../img/floor_02.png";
+floor_01.src = "./img/floor_02.png";
 const floor_02 = new Image();
-floor_02.src = "../img/floor_02.png";
+floor_02.src = "./img/floor_02.png";
 const background = new Image();
-background.src = "../img/background.png";
+background.src = "./img/background.png";
 const obstacle_01 = new Image();
-obstacle_01.src = "../img/cactus_01.png";
+obstacle_01.src = "./img/cactus_01.png";
 const obstacle_02 = new Image();
-obstacle_02.src = "../img/cactus_02.png";
+obstacle_02.src = "./img/cactus_02.png";
 const obstacle_03 = new Image();
-obstacle_03.src = "../img/obst_03.png";
+obstacle_03.src = "./img/obst_03.png";
 const obstacle_04 = new Image();
-obstacle_04.src = "../img/obst_04.png";
+obstacle_04.src = "./img/obst_04.png";
 const obstacle_05 = new Image();
-obstacle_05.src = "../img/obst_05.png";
-/* const dino_frame_count = 2;
-const frame_time = 100; */
+obstacle_05.src = "./img/obst_05.png";
 
 let isGameOver = false;
 let gameId = 0;
-let gravity;
+
 let gameSpeed = 3;
 let obstacles = [];
 
 // Dinocorn definitions
-let airTime = 0;
+
 let player;
 const dinoCorn_01 = new Image();
-dinoCorn_01.src = "../img/dino_walk_01.png";
+dinoCorn_01.src = "./img/dino_walk_01.png";
 const dinoCorn_02 = new Image();
-dinoCorn_02.src = "../img/dino_walk_02.png";
+dinoCorn_02.src = "./img/dino_walk_02.png";
 const dinoCorn_jump = new Image();
-dinoCorn_jump.src = "../img/dino_jump.png";
+dinoCorn_jump.src = "./img/dino_jump.png";
 const dinoCorn_shrink = new Image();
-dinoCorn_shrink.src = "../img/dino_shrink.png";
+dinoCorn_shrink.src = "./img/dino_shrink.png";
 let isShrinking = false;
 
 let jumping = false;
@@ -81,17 +82,10 @@ class Dinocorn {
   Jump() {
     this.vY = -10;
     jumping = true;
-    /*  if (registerKeyPress >= amountOfPressedAllowed) {
-      //player.vY = 0;
-      jumping = false;
-      //console.log(this.vY, gameSpeed, jumping, "yes");
-    } */
   }
   Move() {
-    //this.dinoY = -canvas.height + 600;
     if (this.dinoY + this.dinoHeight < canvas.height && jumping == false) {
       this.dinoY += this.gravity;
-      //airTime++;
     }
     if (jumping === true) {
       this.dinoY += this.vY;
@@ -103,17 +97,9 @@ class Dinocorn {
       this.dinoY += this.gravity;
 
       setTimeout((this.vY = 0), 100);
-      //this.vY = 0;
+
       jumping = false;
     }
-
-    /*  if (airTime > 20) {
-      this.dinoY += this.gravity;
-      airTime = 0;
-    } */
-    /*  if (registerKeyPress > 2) {
-      this.dinoY += this.gravity;
-    } */
   }
 
   Draw() {
@@ -178,9 +164,13 @@ function RandomObstRange(min, max) {
 // Obstacles Creation definition
 
 let obstaclesFrequency = 500;
+
 //floor definitions
+
 let floorW = 0;
 let floorW2 = canvas.width + 498;
+
+//Collision
 
 function detectCollision(obstacle) {
   if (isShrinking) {
@@ -199,15 +189,17 @@ function detectCollision(obstacle) {
     );
   }
 }
+// Update Game
+
 const animate = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-  ctx.drawImage(floor_01, floorW, canvas.height - 500, canvas.width + 500, 440);
+  ctx.drawImage(floor_01, floorW, canvas.height - 500, canvas.width + 498, 440);
   ctx.drawImage(
     floor_02,
     floorW2,
     canvas.height - 500,
-    canvas.width + 500,
+    canvas.width + 498,
     440
   );
 
@@ -215,8 +207,9 @@ const animate = () => {
   player.Move();
 
   if (gameId % 500 == 0) {
-    //Draw an obstacle
     // Make obstacles
+    // types of obstacles
+
     let type = RandomObstRange(0, 4);
     let x;
     let y;
@@ -245,7 +238,7 @@ const animate = () => {
       type = obstacle_04;
       x = 1900;
       y = canvas.height - 100;
-      width = 100;
+      width = 130;
       height = 80;
     } else if (type === 4) {
       type = obstacle_05;
@@ -257,12 +250,15 @@ const animate = () => {
     let newObstacle = new Obstacle(x, y, width, height, type);
     obstacles.push(newObstacle);
   }
+
+  // Increment the speed
   for (let i = 0; i < obstacles.length; i++) {
     obstacles[i].x -= gameSpeed;
     obstacles[i].Draw();
 
     if (detectCollision(obstacles[i])) {
       isGameOver = true;
+      audio_gameover.play();
     }
   }
 
@@ -277,41 +273,48 @@ const animate = () => {
     floorW2 = canvas.width + 498;
   }
   //request animation
+
   if (isGameOver) {
     cancelAnimationFrame(gameId);
+
     restartScreen.classList.remove(`hidden`);
     gameScreen.classList.add("hidden");
     obstaclesFrequency = 0;
-    //player.vY = 0;
+    audio.pause();
+    audio.currentTime = 0;
+
     obstacles = [];
-    // player = null;
+
     scoreValue = 0;
     score.innerHTML = 0;
   } else {
     // Ask for a new frame
+
     gameId = requestAnimationFrame(animate);
   }
+
+  // Score
   scoreValue++;
   score.innerHTML = scoreValue;
   if (scoreValue > highscore.innerText) {
     highscore.innerHTML = scoreValue;
   }
 };
+let incrementTime;
+
+// Start and Restart the Game
 
 window.onload = () => {
   document.getElementById("start-button").onclick = () => {
-    //song.play()
     startGame();
   };
 
   document.getElementById("restart-button").onclick = () => {
-    //song.play()
-    //countRestartButton();
     obstacles = [];
+    clearInterval(incrementTime);
 
     registerKeyPress = 0;
-    console.log(amountOfPressedAllowed);
-    // player = null;
+
     scoreValue = 0;
     score.innerHTML = 0;
     jumping = false;
@@ -322,12 +325,14 @@ window.onload = () => {
     startGame();
   };
   function startGame() {
+    audio.play();
     restartScreen.classList.add("hidden");
     startScreen.style.display = "none";
     gameScreen.classList.remove("hidden");
+
     registerKeyPress = 0;
-    setInterval(function () {
-      gameSpeed += 0.05;
+    incrementTime = setInterval(function () {
+      gameSpeed += 0.5;
     }, 2000);
 
     player = new Dinocorn();

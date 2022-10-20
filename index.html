@@ -15,16 +15,32 @@
   </head>
   <body>
     <div class="start-screen">
-      <div class="logo">
-        <img src="/img/dino_game_logo.png" alt="Dino Game" />
-      </div>
-      <!-- <div class="high-score-div">
+      <div class="container-start">
+        <div class="left-side">
+          <img src="/img/cloud_01.png" alt="cloud" />
+          <img src="/img/bee_start.png" alt="bee" class="bee bounce-1" />
+        </div>
+        <div class="logo">
+          <img src="/img/dino_game_logo.png" alt="Dino Game" />
+        </div>
+        <!-- <div class="high-score-div">
         <p>Highscore: <span class="highScore"> 0 </span></p>
       </div> -->
-      <button id="start-button">
-        <img src="/img/button_start.png" alt="start button" />
-      </button>
-      <p>Press space to jump and arrow down</p>
+        <button id="start-button">
+          Let's play!
+          <!-- <img
+            src="/img/button_start_no_text.png"
+            alt="start button"
+            class="buttonOne"
+          /> -->
+        </button>
+        <p>Press space to jump and down arrow to get down</p>
+        <img src="./img/floor.png" alt="floor" class="floor-start" />
+        <div class="right-side">
+          <img src="./img/cloud_02.png" alt="cloud" class="cloudStart_02" />
+          <img src="./img/dino_jump.png" alt="Dino Jump" class="jumping_dino" />
+        </div>
+      </div>
     </div>
 
     <div id="game-screen" class="hidden">
@@ -39,12 +55,33 @@
       <canvas id="game" width="1920" height="600"></canvas>
     </div>
     <div class="restart-screen hidden">
-      <div class="logo">
+      <div class="container-start">
+        <div class="left-side">
+          <img src="./img/cloud_01.png" alt="cloud" />
+          <img src="./img/bee_start.png" alt="bee" class="bee bounce-1" />
+        </div>
+        <div class="logo">
+          <img src="./img/dino_game_logo.png" alt="Dino Game" />
+        </div>
+        <!-- <div class="high-score-div">
+        <p>Highscore: <span class="highScore"> 0 </span></p>
+      </div> -->
+        <p class="finalText">You have to believe it! Unicorns are real!</p>
+        <button id="restart-button">Let's play!</button>
+        <p>Press space to jump and down arrow to get down</p>
+        <img src="./img/floor.png" alt="floor" class="floor-start" />
+        <div class="right-side">
+          <img src="./img/cloud_02.png" alt="cloud" />
+          <img src="./img/dino_stop.png" alt="Dino Jump" class="Dino" />
+        </div>
+      </div>
+
+      <!--  <div class="logo">
         <img src="/img/dino_game_logo.png" alt="Dino Game" />
       </div>
       <button id="restart-button">
         <img src="/img/button_start.png" alt="start button" />
-      </button>
+      </button> -->
     </div>
     <script type="text/javascript" src="js/index.js"></script>
   </body>
