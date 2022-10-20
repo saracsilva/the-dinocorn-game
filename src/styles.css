@@ -2,18 +2,56 @@
   margin: 0;
   padding: 0;
 }
-.start-screen {
-  background-image: url("./img/background.png");
+body {
+  align-content: center;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+}
+.start-screen {
+  display: flex;
+  align-items: center;
+  width: 1920px;
+  justify-content: space-around;
   max-width: 1920px;
   height: 600px;
+  background-image: url("../img/floor.png");
+  background-image: url("../img/background.png");
 }
-button {
+.restart-screen {
   display: flex;
+  align-items: center;
+  width: 1920px;
+  justify-content: space-around;
+
+  height: 600px;
+
+  background-image: url("../img/background.png");
+}
+.container-start {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+button {
+  z-index: 11;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../img/button_start_no_text.png");
+  background-color: none;
+  border-style: none;
+  width: 598px;
+  height: 102px;
+  font-family: "Modak", cursive;
+  font-size: 4rem;
+  color: #b98abf;
+  text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000, 1px 1px #000,
+    -1px -1px #000, 1px -1px #000, -1px 1px #000;
+  padding-top: 15px;
+  list-style: none;
+  box-shadow: none;
 }
 .background {
   position: relative;
@@ -23,4 +61,80 @@ button {
 }
 .scores {
   position: absolute;
+  padding-left: 30px;
+  font-weight: bold;
+}
+p {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  font-family: "Turret Road", cursive;
+}
+
+.jumping_dino {
+  position: relative;
+}
+.cloudStart_02 {
+  padding-left: 100px;
+}
+.left-side {
+  display: flex;
+  flex-direction: column;
+
+  position: absolute;
+  padding-right: 900px;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+.right-side {
+  display: flex;
+  flex-direction: column;
+  z-index: 9;
+  position: absolute;
+  padding-left: 1000px;
+  align-items: center;
+  justify-content: center;
+}
+.floor-start {
+  align-items: center;
+  justify-content: center;
+  padding-top: 50px;
+  width: 900px;
+  height: 20px;
+}
+#restart-button {
+  background-color: none;
+  border-style: none;
+}
+#start-button {
+  background-color: none;
+  border-style: none;
+}
+.buttonOne {
+  border-style: none;
+  background-color: none;
+}
+.finalText {
+  font-size: 2rem;
+  padding-bottom: 20px;
+}
+.bee {
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  transform-origin: bottom;
+}
+.bounce-1 {
+  animation-name: bounce-1;
+  animation-timing-function: ease-in-out;
+}
+@keyframes bounce-1 {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-50px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
