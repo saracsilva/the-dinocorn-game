@@ -28,21 +28,21 @@ let registerKeyPress;
 let amountOfPressedAllowed = 5;
 // Game definitions
 const floor_01 = new Image();
-floor_01.src = "../img/floor_02.png";
+floor_01.src = "./img/floor_02.png";
 const floor_02 = new Image();
-floor_02.src = "../img/floor_02.png";
+floor_02.src = "./img/floor_02.png";
 const background = new Image();
-background.src = "../img/background.png";
+background.src = "./img/background.png";
 const obstacle_01 = new Image();
-obstacle_01.src = "../img/cactus_01.png";
+obstacle_01.src = "./img/cactus_01.png";
 const obstacle_02 = new Image();
-obstacle_02.src = "../img/cactus_02.png";
+obstacle_02.src = "./img/cactus_02.png";
 const obstacle_03 = new Image();
-obstacle_03.src = "../img/obst_03.png";
+obstacle_03.src = "./img/obst_03.png";
 const obstacle_04 = new Image();
-obstacle_04.src = "../img/obst_04.png";
+obstacle_04.src = "./img/obst_04.png";
 const obstacle_05 = new Image();
-obstacle_05.src = "../img/obst_05.png";
+obstacle_05.src = "./img/obst_05.png";
 /* const dino_frame_count = 2;
 const frame_time = 100; */
 
@@ -56,13 +56,13 @@ let obstacles = [];
 let airTime = 0;
 let player;
 const dinoCorn_01 = new Image();
-dinoCorn_01.src = "../img/dino_walk_01.png";
+dinoCorn_01.src = "./img/dino_walk_01.png";
 const dinoCorn_02 = new Image();
-dinoCorn_02.src = "../img/dino_walk_02.png";
+dinoCorn_02.src = "./img/dino_walk_02.png";
 const dinoCorn_jump = new Image();
-dinoCorn_jump.src = "../img/dino_jump.png";
+dinoCorn_jump.src = "./img/dino_jump.png";
 const dinoCorn_shrink = new Image();
-dinoCorn_shrink.src = "../img/dino_shrink.png";
+dinoCorn_shrink.src = "./img/dino_shrink.png";
 let isShrinking = false;
 
 let jumping = false;
