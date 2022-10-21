@@ -162,13 +162,15 @@ function RandomObstRange(min, max) {
   return Math.round(Math.random() * (max - min) + min);
 }
 // Obstacles Creation definition
-
+setInterval(function () {
+  obstaclesFrequency -= 10;
+}, 5000);
 let obstaclesFrequency = 500;
 
 //floor definitions
 
 let floorW = 0;
-let floorW2 = canvas.width + 498;
+let floorW2 = canvas.width + 497;
 
 //Collision
 
@@ -194,19 +196,19 @@ function detectCollision(obstacle) {
 const animate = () => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-  ctx.drawImage(floor_01, floorW, canvas.height - 500, canvas.width + 498, 440);
+  ctx.drawImage(floor_01, floorW, canvas.height - 500, canvas.width + 500, 440);
   ctx.drawImage(
     floor_02,
     floorW2,
     canvas.height - 500,
-    canvas.width + 498,
+    canvas.width + 500,
     440
   );
 
   player.Draw();
   player.Move();
 
-  if (gameId % 500 == 0) {
+  if (gameId % obstaclesFrequency == 0) {
     // Make obstacles
     // types of obstacles
 
@@ -267,10 +269,10 @@ const animate = () => {
   floorW -= 3;
   floorW2 -= 3;
   if (floorW < -canvas.width - 500) {
-    floorW = canvas.width + 498;
+    floorW = canvas.width + 497;
   }
   if (floorW2 < -canvas.width - 500) {
-    floorW2 = canvas.width + 498;
+    floorW2 = canvas.width + 497;
   }
   //request animation
 
@@ -279,7 +281,7 @@ const animate = () => {
 
     restartScreen.classList.remove(`hidden`);
     gameScreen.classList.add("hidden");
-    obstaclesFrequency = 0;
+    obstaclesFrequency = 500;
     audio.pause();
     audio.currentTime = 0;
 
@@ -332,7 +334,7 @@ window.onload = () => {
 
     registerKeyPress = 0;
     incrementTime = setInterval(function () {
-      gameSpeed += 0.5;
+      gameSpeed += 0.7;
     }, 2000);
 
     player = new Dinocorn();
